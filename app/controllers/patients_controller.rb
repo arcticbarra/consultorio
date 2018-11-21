@@ -4,7 +4,11 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    if current_user.doctor
+      @patients = Patient.all
+    else
+      redirect_to patient_path(current_user.patient)
+    end
   end
 
   # GET /patients/1
