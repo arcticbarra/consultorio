@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181115021942) do
+ActiveRecord::Schema.define(version: 20181121181643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20181115021942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "heard_about_us"
+    t.bigint "checkup_id"
+    t.index ["checkup_id"], name: "index_patients_on_checkup_id"
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(version: 20181115021942) do
   add_foreign_key "evolution_notes", "patients"
   add_foreign_key "patient_diseases", "diseases"
   add_foreign_key "patient_diseases", "patients"
+  add_foreign_key "patients", "checkups"
   add_foreign_key "patients", "users"
   add_foreign_key "users", "roles"
 end

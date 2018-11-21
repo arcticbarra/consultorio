@@ -58,7 +58,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
-        <%= builder.text_field :birth_date, id: :birth_date, class: "form-control" %>
+        <%= builder.date_field :birth_date, id: :birth_date, as: :date, class: "form-control" %>
       </div>
       <p id="error_birth_date" class="error_p"></p>
     </div>
@@ -169,10 +169,11 @@
                                          "Nuevo Leon",
                                          "Oaxaca",
                                          "Puebla","Queretaro","Quintana Roo","San Luis Potosi","Sinaloa","Sonora","Tabasco",
-                                         "Tamaulipas","Tlaxcala","Veracruz","Yucatan","Zacatecas"], {},class: "form-control selectpicker" %>
-                                       <p id="error_patient_state" class="error_p"></p>
+                                         "Tamaulipas","Tlaxcala","Veracruz","Yucatan","Zacatecas"], {}, class: "form-control selectpicker" %>
+                                       <p id="error_patient_state" class="error_p">
       </div>
     </div>
+  </div>
 
     <!-- Text input-->
 
@@ -180,31 +181,29 @@
       <label class="col-md-4 control-label">(Opcional) RFC</label>
       <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
-          <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+          <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
           <%= builder.text_field :rfc, id: :rfc, class: "form-control" %>
         </div>
       </div>
     </div>
 
-    <!-- Text area -->
-
     <div class="form-group">
-      <label class="col-md-4 control-label">Motivo de la Consulta</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-          <%#<%= builder.text_field :consult_reason, id: :consult_reason, class: "form-control" %>%>
-        </div>
-        <p id="error_consult_reason" class="error_p"></p>
+      <label class="col-md-4 control-label">Como se enteró de nosotros?</label>
+      <div class="col-md-4">
+        <%= builder.select :heard_about_us, ['Facebook', 'Doctoralia', 'Sitio Web', 'Recomendación', 'Otro']%>
       </div>
     </div>
+
+    <!-- Text area -->
     <!-- Success message -->
     <div class="alert alert-success" role="alert" id="success_message">Exito
-      <i class="glyphicon glyphicon-thumbs-up"></i>Has sido registrado exitosamente.</div>
+      <i class="glyphicon glyphicon-thumbs-up"></i>Has sido registrado exitosamente.
+    </div>
 
     <!-- Error message -->
     <div class="alert alert-danger" role="alert" id="error_message">Error
       <i class="glyphicon glyphicon-thumbs-down"></i> Hay un error en el
-      registro.</div>
+      registro.
+    </div>
 
   <% end %>
