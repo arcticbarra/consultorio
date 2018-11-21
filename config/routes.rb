@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :patients do
     resources :evolution_notes, only: [:index, :new, :create]
   end
-
+  root to: 'pages#index'
   resources :doctors
   resources :evolution_notes, only: [:show, :edit, :update, :destroy]
 end

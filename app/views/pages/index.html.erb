@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Centro Dermatológico Guerra</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Playfair+Display" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <div class="header-nav">
+            <a href="#"><%= image_tag("derma-icon.png") %></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#general_info">Conócenos</a></li>
+                    <li><a href="#doctor_info">Información del Doctor</a></li>
+                    <li><a href="#list_of_services">Servicios</a></li>
+                    <li><a href="#contact_info">Contactos</a></li>
+                </ul>
+            </nav>
+            <nav class="navigation_buttons">
+                <ul>
+                    <li><%= link_to new_user_session_path, class: "btn btn-secondary btn-sm active" do %>
+                    <i class="fas fa-sign-in-alt"></i>Entrar
+                    <% end %>
+                    </li>
+                    <li><%= link_to new_user_registration_path, class: "btn btn-secondary btn-sm active" do %>
+                    <i class="fas fa-user-plus"></i>Registrarse
+                    <% end %>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <section class="contact-info">
+            <ul>
+                <li>Vancouver 171 Col. Vista Hermosa
+                </li>
+                <li>Lunes a Sabado 8:00 a.m. - 6:30 p.m.</li>
+                <li>Domingos 11:00 a.m. - 4:00 p.m.</li>
+                <li>Trabajamos con citas</li>
+            </ul>
+        </section>
+    </header>
+
+    <main>
+        <section class="hero-image">
+            <div>
+                <%= image_tag("big_logo.png", id: 'logo_image') %>
+                <h1 id="logo_text">Centro Dermatológico Guerra</h1>
+            </div>
+        </section>
+        <section id="general_info" class="intro">
+            <h2>¿Quienes somos?</h2>
+            <p>El centro tiene especial interés en las heridas de difícil manejo, dermatitis atópica y tratamiento del
+                cáncer de piel.
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </section>
+        <section id="doctor_info" class="doctor">
+            <div class="dr_information">
+                <div class="dr_information__text-container center">
+                    <div class="dr_information__text">
+                        <h2>Dr. Angel Eduardo Guerra Vázquez</h2>
+                        <h3>Dermatología clínica y cosmética<br> Cirugía
+                            dermatológica</h3>
+                        <p>El Dr. Angel Guerra es médico cirujano y partero egresado de la <br>
+                            Universidad Autónoma de Nuevo León, posteriormente realizó un año <br>
+                            de Medicina Interna en HGR 1 del IMSS en Chihuahua, Chihuahua. <br><br>
+                            La especialidad en Dermatología en el Hospital Universitario <br>
+                            “José Eleuterio González” de la UANL. <br><br>
+                            Rotaciones clínicas en Estados Unidos y Brasil. Experiencia en <br>
+                            Manejo Avanzado de Heridas en el Hospital “Manuel Gea González”.<br><br></p>
+                    </div>
+                    <div>
+                        <%= image_tag("dr_photo.jpg", id: 'doctor_image') %>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="list_of_services" class="services">
+            <h2>Servicios</h2>
+            <ul>
+                <li>
+                    <h4>Pruebas y procedimientos</h4>
+                    <p>Aplicación de rellenos faciales<br>
+                        Aplicación de toxína botulinica<br>
+                        Cirugía de los tumores cutáneos simples<br>
+                        Cirugía de uña encarnada<br>
+                        Colgajos complejos<br>
+                        Crioterapia<br>
+                        Dermatoscopia<br>
+                        Extirpación de lunares<br>
+                        Extirpación de tumores benignos cutáneos<br>
+                        Láser de CO2</p>
+                </li>
+                <li>
+                    <h4>Enfermedades</h4>
+                    <p>
+                        Acné<br>
+                        Alopecia androgénica<br>
+                        Alopecia areata<br>
+                        Cáncer de piel<br>
+                        Dermatitis atópica<br>
+                        Foliculitis<br>
+                        Hiperhidrosis<br>
+                        Impétigo<br>
+                        Infección micótica de piel<br>
+                        Melanoma<br>
+                        Melasma<br>
+                        Patología ungueal
+                    </p>
+                </li>
+                <li>
+                    <h4>Tratamientos</h4>
+                    <p>
+                        Cirugía de Mohs<br>
+                        Cirugía molusco contagioso<br>
+                        Cirugía plástica en uñas enterradas<br>
+                        Curetaje de molusco contagioso<br>
+                        Depilación con luz pulsada<br>
+                        Electrocoagulación de verrugas<br>
+                        Eliminación de acrocordones<br>
+                        Manejo Avanzado de Heridas<br>
+                        Peeling<br>
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer id="contact_info">
+        <div class="footer__main">
+            <div class="footer__main__title">
+                <h2><span>Centro Dermatológico Guerra</span> Dr. Angel Eduardo Guerra Vázquez</h2>
+            </div>
+            <div id="footer_second_container">
+                <div class="footer__main__contact">
+                    <h3>Contactanos</h3>
+                    <p><i class="fas fa-phone"></i> 8342.1288</p>
+                    <p><i class="fab fa-whatsapp"></i> 811.988.4436</p>
+                    <h3>Ubicación</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <h4 id="footer_location_title">Centro Dermatológico Guerra</h4>
+                            <p>Vancouver 171<br>
+                                Col. Vista Hermosa<br>
+                                CP. 64620 <br>
+                                Monterrey, N.L. México.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div id="googleMap"></div>
+                    <script>
+                        function myMap() {
+                            var mapProp = {
+                                center: new google.maps.LatLng(25.685198, -100.354296),
+                                zoom: 18,
+                            };
+                            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                            var marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(25.685198, -100.354296),
+                                map: map,
+                                title: 'Centro Dermatológico Guerra'
+                            });
+                        }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzYwpLj06czEOBcZEcaI0Nagij324SuXA&callback=myMap"></script>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

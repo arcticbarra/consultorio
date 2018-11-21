@@ -1,4 +1,97 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>
+<div id="wrapper">
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <%= link_to 'Editar', edit_patient_path(@patient) %> |
+      <%= link_to 'Atrás', patients_path %>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Paciente <%= "#{@patient.first_name} #{@patient.last_name_father}" %></h1>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                  <% @patient.show_attributes.each do |name, value| %>
+                    <div class="container">
+                      <label class="control-label"><%= name %>:</label> <%= value %>
+                      <div class="pull-right">
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Antecedentes familiares</h1>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                  <% @patient.family_antecedents.each do |disease| %>
+                    <div class="container">
+                      <label class="control-label"><%= disease.name %></label>
+                      <div class="pull-right">
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="col-md-12">
+          <h1>Antecedentes personales patológicos</h1>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                  <% @patient.patient_antecedents.each do |disease| %>
+                    <div class="container">
+                      <label class="control-label"><%= disease.name %></label>
+                      <div class="pull-right">
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Interrogatorio y exploración dermatológica</h1>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                  <% @patient.show_attributes.each do |name, value| %>
+                    <div class="container">
+                      <label class="control-label"><%= name %>:</label> <%= value %>
+                      <div class="pull-right">
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+      <!-- /.col-lg-12 -->
+    </div>
+  </div>
+</div>
+<!-- /#page-content-wrapper -->
+</div>
