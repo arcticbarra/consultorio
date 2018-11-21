@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :patients do
     resources :evolution_notes
   end
-
+  root to: 'pages#index'
   resources :doctors
 end
