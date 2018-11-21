@@ -1,9 +1,9 @@
 class Patient < ApplicationRecord
   belongs_to :user
   has_many :diseases, through: :patient_diseases
-  enum gender: %i[male female]
-  enum civil_status: %i[single married free_union divorced widowed]
-  enum occupation: %i[student employee merchant retired housewife]
+  enum gender: %i[Masculino Femenino]
+  enum civil_status: ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo']
+  enum occupation: ['Estudiante', 'Empleado', 'Comerciante', 'Jubilado', 'Ama de casa']
   enum heard_about_us: %i[facebook doctoralia website recommendation other]
 
   def family_antecedents
