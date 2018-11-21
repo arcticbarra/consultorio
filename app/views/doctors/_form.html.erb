@@ -1,0 +1,185 @@
+<%= form_for :user, url: "/doctors" do |form|%>
+  <% if doctor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+
+      <ul>
+        <% doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!DOCTYPE html>
+  <html>
+
+    <head>
+      <meta charset="utf-8" />
+      <title>Registro de Doctor</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="./../../Styles/custom.css" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+                                                                                            crossorigin="anonymous">
+    </head>
+
+    <body>
+      <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Registrar Doctor</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <!-- Form -->
+                    <div class="container">
+
+                      <form class="well form-horizontal">
+                        <fieldset>
+
+                          <!-- HEADER DIV -->
+                          <div class="form-group">
+                            <h4 class="col-md-7 control-label">Datos del Doctor</h4>
+                          </div>
+
+                          <!-- Text input-->
+                          <%= form.fields_for :doctor_attributes, Doctor.new do |builder| %>
+                            <div class="form-group">
+                              <label class="col-md-4 control-label">Nombre(s)</label>
+                              <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                  <%= builder.text_field :first_name, id: :first_name, class: "form-control" %>
+                                </div>
+                                <p id="error_first_name" class="error_p"></p>
+                              </div>
+                            </div>
+
+                            <!-- Text input-->
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label">Apellido Paterno</label>
+                              <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                  <%= builder.text_field :last_name_father, id: :last_name_father, class: "form-control" %>
+                                </div>
+                                <p id="error_last_name_father" class="error_p"></p>
+                              </div>
+                            </div>
+
+                            <!-- Text input-->
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label">Apellido Materno</label>
+                              <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                  <%= builder.text_field :last_name_mother, id: :last_name_mother, class: "form-control" %>
+                                </div>
+                                <p id="error_last_name_mother" class="error_p"></p>
+                              </div>
+                            </div>
+
+
+                            <!-- Text input-->
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label">Cedula</label>
+                              <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                  <%= builder.text_field :cedula, id: :cedula, class: "form-control" %>
+                                </div>
+                                <p id="error_last_name_mother" class="error_p"></p>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- Text input-->
+
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail</label>
+                            <div class="col-md-4 inputGroupContainer">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                              </div>
+                              <p id="error_username" class="error_p"></p>
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Contraseña</label>
+                            <div class="col-md-4 inputGroupContainer">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+                                <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                              </div>
+                              <p id="error_password" class="error_p"></p>
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Verificar Contraseña</label>
+                            <div class="col-md-4 inputGroupContainer">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+                                <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                              </div>
+                              <p id="error_verify_password" class="error_p"></p>
+                            </div>
+                          </div>
+                          <!-- Success message -->
+                          <div class="alert alert-success" role="alert" id="success_message">Exito
+                            <i class="glyphicon glyphicon-thumbs-up"></i>Has sido registrado
+                            exitosamente.</div>
+
+                          <!-- Error message -->
+                          <div class="alert alert-danger" role="alert" id="error_message">Error
+                            <i class="glyphicon glyphicon-thumbs-down"></i> Hay un error en el
+                            registro.</div>
+                        </fieldset>
+                      </form>
+                      <div class="pull-right">
+                        <button type="button" class="btn btn-danger" id="patient_form_cancel">Regresar</button>
+                        <button type="submit" class="btn btn-success" id="patient_form_save">Registrarse</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.container -->
+                  <!-- Form -->
+                </div>
+              </div>
+            </div>
+            <!-- /.col-lg-12 -->
+          </div>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+      </div>
+      <!-- /#wrapper -->
+      <!-- JAVASCRIPT -->
+      <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+      <script type="text/javascript" src="./../../js/register-doctor.js"></script>
+    </body>
+
+
+  </html>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
