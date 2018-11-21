@@ -1,25 +1,27 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: %i[show edit update destroy]
 
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    if current_user.doctor
+      @patients = Patient.all
+    else
+      redirect_to patient_path(current_user.patient)
+    end
   end
 
   # GET /patients/1
   # GET /patients/1.json
-  def show
-  end
+  def show; end
 
   # GET /patients/new
   def new
-    @patient = Patient.new
+    @user = User.new
   end
 
   # GET /patients/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /patients
   # POST /patients.json
@@ -41,6 +43,7 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1.json
   def update
     respond_to do |format|
+      puts(patient_params)
       if @patient.update(patient_params)
         format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient }
@@ -62,13 +65,18 @@ class PatientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_patient
-      @patient = Patient.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def patient_params
-      params.fetch(:patient, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_patient
+    @patient = Patient.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def patient_params
+    params.require(:patient).permit(
+      :id, :first_name, :last_name_father, :last_name_mother,
+      :gender, :birth_date, :civil_status, :occupation, :street,
+      :colony, :zip_code, :city, :state, :rfc
+    )
+  end
 end

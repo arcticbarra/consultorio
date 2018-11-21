@@ -1,16 +1,6 @@
-<%= form_with(model: patient, local: true, html: {class: 'well form-horizontal'}) do |form| %>
-  <% if patient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-
-      <ul>
-      <% patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <div class="form-group">
+<%= f.fields_for :patient_attributes, patient do |builder| %>
+  <!-- HEADER DIV -->
+  <div class="form-group">
     <h4 class="col-md-7 control-label">Datos Personales</h4>
   </div>
 
@@ -21,7 +11,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <%= form.text_field :first_name, id: :first_name, class: "form-control" %>
+        <%= builder.text_field :first_name, id: :first_name, class: "form-control" %>
       </div>
       <p id="error_first_name" class="error_p"></p>
     </div>
@@ -34,7 +24,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <%= form.text_field :last_name_father, id: :last_name_father, class: "form-control" %>
+        <%= builder.text_field :last_name_father, id: :last_name_father, class: "form-control" %>
       </div>
       <p id="error_last_name_father" class="error_p"></p>
     </div>
@@ -47,7 +37,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <%= form.text_field :last_name_mother, id: :last_name_mother, class: "form-control" %>
+        <%= builder.text_field :last_name_mother, id: :last_name_mother, class: "form-control" %>
       </div>
       <p id="error_last_name_mother" class="error_p"></p>
     </div>
@@ -57,7 +47,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label">Sexo</label>
     <div class="col-md-4">
-      <%= form.select :gender, ['Masculino', 'Femenino']%>
+      <%= builder.select :gender, ['Masculino', 'Femenino']%>
     </div>
   </div>
 
@@ -68,7 +58,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
-        <%= form.date_field :birth_date, id: :birth_date, as: :date, class: "form-control" %>
+        <%= builder.date_field :birth_date, id: :birth_date, as: :date, class: "form-control" %>
       </div>
       <p id="error_birth_date" class="error_p"></p>
     </div>
@@ -78,7 +68,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label">Estado Civil</label>
     <div class="col-md-4">
-      <%= form.select :civil_status, ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo']%>
+      <%= builder.select :civil_status, ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo']%>
     </div>
   </div>
 
@@ -86,7 +76,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label">Ocupación</label>
     <div class="col-md-4">
-      <%= form.select :occupation, ['Estudiante', 'Empleado', 'Comerciante', 'Jubilado', 'Ama de casa']%>
+      <%= builder.select :occupation, ['Estudiante', 'Empleado', 'Comerciante', 'Jubilado', 'Ama de casa']%>
     </div>
   </div>
 
@@ -97,7 +87,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-        <%= form.text_field :phone, id: :phone, class: "form-control" %>
+        <%= builder.text_field :phone, id: :phone, class: "form-control" %>
       </div>
       <p id="error_phone" class="error_p"></p>
     </div>
@@ -110,7 +100,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-        <%= form.text_field :street, id: :street, class: "form-control" %>
+        <%= builder.text_field :street, id: :street, class: "form-control" %>
       </div>
       <p id="error_street" class="error_p"></p>
     </div>
@@ -123,7 +113,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-        <%= form.text_field :colony, id: :colony, class: "form-control" %>
+        <%= builder.text_field :colony, id: :colony, class: "form-control" %>
       </div>
       <p id="error_colony" class="error_p"></p>
     </div>
@@ -136,7 +126,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-        <%= form.text_field :zip_code, id: :zip_code, class: "form-control" %>
+        <%= builder.text_field :zip_code, id: :zip_code, class: "form-control" %>
       </div>
       <p id="error_zip_code" class="error_p"></p>
     </div>
@@ -149,7 +139,7 @@
     <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-        <%= form.text_field :city, id: :city, class: "form-control" %>
+        <%= builder.text_field :city, id: :city, class: "form-control" %>
       </div>
       <p id="error_city" class="error_p"></p>
     </div>
@@ -163,7 +153,7 @@
     <div class="col-md-4 selectContainer">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-        <%= form.select :state, ["Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chihuahua",
+        <%= builder.select :state, ["Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chihuahua",
                                          "Chiapas",
                                          "Coahuila",
                                          "Colima",
@@ -192,7 +182,7 @@
       <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-          <%= form.text_field :rfc, id: :rfc, class: "form-control" %>
+          <%= builder.text_field :rfc, id: :rfc, class: "form-control" %>
         </div>
       </div>
     </div>
@@ -200,13 +190,9 @@
     <div class="form-group">
       <label class="col-md-4 control-label">Como se enteró de nosotros?</label>
       <div class="col-md-4">
-        <%= form.select :heard_about_us, ['Facebook', 'Doctoralia', 'Sitio Web', 'Recomendación', 'Otro']%>
+        <%= builder.select :heard_about_us, ['Facebook', 'Doctoralia', 'Sitio Web', 'Recomendación', 'Otro']%>
       </div>
     </div>
-
-    <% if current_user.patient %>
-
-    <% end %>
 
     <!-- Text area -->
     <!-- Success message -->
@@ -220,7 +206,4 @@
       registro.
     </div>
 
-  <div class="actions center">
-    <%= form.submit 'Actualizar paciente', class: 'btn btn-success' %>
-  </div>
-<% end %>
+  <% end %>
