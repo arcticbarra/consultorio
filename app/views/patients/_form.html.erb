@@ -204,6 +204,10 @@
       </div>
     </div>
 
+    <% if current_user.patient %>
+
+    <% end %>
+
     <!-- Text area -->
     <!-- Success message -->
     <div class="alert alert-success" role="alert" id="success_message">Exito
@@ -216,7 +220,7 @@
       registro.
     </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions center">
+    <%= form.submit 'Actualizar paciente', class: 'btn btn-success' %>
   </div>
 <% end %>
