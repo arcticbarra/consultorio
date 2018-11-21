@@ -14,7 +14,8 @@ class EvolutionNotesController < ApplicationController
 
   # GET /evolution_notes/new
   def new
-    @evolution_note = EvolutionNote.new
+    @patient = Patient.find(params[:patient_id])
+    @evolution_note = @patient.evolution_notes.new
   end
 
   # GET /evolution_notes/1/edit
@@ -25,10 +26,12 @@ class EvolutionNotesController < ApplicationController
   # POST /evolution_notes.json
   def create
     @evolution_note = EvolutionNote.new(evolution_note_params)
+    @evolution_note.doctor_id = current_user.doctor.id
+    @evolution_note.patient_id =params[:patient_id] 
 
     respond_to do |format|
       if @evolution_note.save
-        format.html { redirect_to @evolution_note, notice: 'Evolution note was successfully created.' }
+        format.html { redirect_to patient_evolution_notes_path(@evolution_note.patient), notice: 'Evolution note was successfully created.' }
         format.json { render :show, status: :created, location: @evolution_note }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class EvolutionNotesController < ApplicationController
   def update
     respond_to do |format|
       if @evolution_note.update(evolution_note_params)
-        format.html { redirect_to @evolution_note, notice: 'Evolution note was successfully updated.' }
+        format.html { redirect_to patient_evolution_notes_path(@evolution_note.patient), notice: 'Evolution note was successfully created.' }
         format.json { render :show, status: :ok, location: @evolution_note }
       else
         format.html { render :edit }
@@ -69,6 +72,6 @@ class EvolutionNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evolution_note_params
-      params.fetch(:evolution_note, {})
+      params.require(:evolution_note).permit(:diagnosis, :treatment, :patient_id)
     end
 end

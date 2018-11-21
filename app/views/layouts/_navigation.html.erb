@@ -3,18 +3,18 @@
 
     <!-- navbar-top-left -->
     <ul class="nav navbar-nav navbar-top">
-      <li id="fat-menu">
-        <a href="./../doctor-portal.html" class="center" role="button" aria-haspopup="false" aria-expanded="false"><i
-                                                                                             class="fa fa-home"></i><span>Menu</span></a>
-      </li>
       <li class="active" id="fat-menu">
-        <a href="./patient-dashboard.html" class="center" role="button" aria-haspopup="false" aria-expanded="false"><i
-                                                                                              class="fa fa-user-injured"></i><span>Pacientes</span></a>
+        <% if current_user.doctor %>
+        <%= link_to "Pacientes", patients_path, class: "fa fa-user-injured"%>
+      <% else  %>
+        <%= link_to "Recetas", patient_evolution_notes_path(current_user), class: "fa fa-user-injured"%>
+      <% end %>
       </li>
-      <li id="fat-menu">
-        <a href="./../NotasDevolucion/note-dashboard.html" class="center" role="button" aria-haspopup="false"
-                                                                                        aria-expanded="false"><i class="fa fa-file-prescription"></i><span>Notas de Devolucion</span></a>
-      </li>
+      <%#<li id="fat-menu">%>
+        <%#<%= link_to "Pacientes", , class: "fa fa-user-injured"%>%>
+        <%#<a href="./../NotasDevolucion/note-dashboard.html" class="center" role="button" aria-haspopup="false"%>
+                                                                                        <%#aria-expanded="false"><i class="fa fa-file-prescription"></i><span>Notas de Devolucion</span></a>%>
+      <%#</li>%>
     </ul>
     <!-- /navbar-top-left -->
 
@@ -23,7 +23,10 @@
       <li id="fat-menu" class="dropdown"> <a class="dropdown-toggle center" id="drop3" data-toggle="dropdown"
                                                                                        role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i></a>
         <ul class="dropdown-menu" aria-labelledby="drop3">
-          <li><button class="btn col-md-12" id="logout_button">Salir</button></li>
+          <% if current_user.patient %>
+            <li><%= link_to "Perfil", edit_patient_path(current_user.patient), class: "fa fa-user-injured"%></li>
+      <% end %>
+          <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
         </ul>
       </li>
     </ul>

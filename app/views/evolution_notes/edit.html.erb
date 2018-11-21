@@ -1,6 +1,3 @@
-<h1>Editing Evolution Note</h1>
+<h1>Editar Nota de Evolución</h1>
 
-<%= render 'form', evolution_note: @evolution_note %>
-
-<%= link_to 'Show', @evolution_note %> |
-<%= link_to 'Back', evolution_notes_path %>
+<%= render 'form', evolution_note: @evolution_note, patient: @evolution_note.patient %>
