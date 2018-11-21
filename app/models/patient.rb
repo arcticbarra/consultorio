@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
   belongs_to :user
   has_many :diseases, through: :patient_diseases
+  has_many :evolution_notes
   enum gender: %i[Masculino Femenino]
   enum civil_status: ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo']
   enum occupation: ['Estudiante', 'Empleado', 'Comerciante', 'Jubilado', 'Ama de casa']
