@@ -5,8 +5,11 @@
     <div class="container-fluid">
       <%= link_to 'Editar', edit_patient_path(@patient) %>
       <div class="row container">
-        <div class="col-md-12">
+        <div class="col-lg-6">
           <h1>Paciente <%= "#{@patient.first_name} #{@patient.last_name_father}" %></h1>
+        </div>
+        <div class="col-lg-6">
+          <%= link_to 'Notas de devolución', patient_evolution_notes_path(@patient), class: 'btn btn-success' %>
         </div>
       </div>
         <div class="row container">
