@@ -5,9 +5,13 @@
     <ul class="nav navbar-nav navbar-top">
       <li class="active" id="fat-menu">
         <% if current_user.doctor %>
-        <%= link_to "Pacientes", patients_path, class: "fa fa-user-injured"%>
+        <%= link_to patients_path do %>
+          <i class='fa fa-user-injured'></i><span>Pacientes</span>
+        <% end %>
       <% else  %>
-        <%= link_to "Recetas", patient_evolution_notes_path(current_user), class: "fa fa-user-injured"%>
+        <%= link_to patient_evolution_notes_path(current_user) do %>
+          <i class='fa fa-file-prescription'></i><span>Recetas</span>
+        <% end %>
       <% end %>
       </li>
       <%#<li id="fat-menu">%>

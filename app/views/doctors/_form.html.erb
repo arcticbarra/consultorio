@@ -1,37 +1,12 @@
 <%= form_for :user, url: "/doctors", html: {class: 'well form-horizontal'} do |form|%>
-  <% if doctor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
-
-      <ul>
-        <% doctor.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <!DOCTYPE html>
-  <html>
-
-    <head>
-      <meta charset="utf-8" />
-      <title>Registro de Doctor</title>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-      <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="./../../Styles/custom.css" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-                                                                                            crossorigin="anonymous">
-    </head>
-
-    <body>
       <div id="wrapper">
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
+              <%= link_to 'Regresar', doctors_path, class: 'btn btn-success' %>
+
                 <h1>Registrar Doctor</h1>
               </div>
             </div>
@@ -153,8 +128,9 @@
                         </fieldset>
                       </form>
                       <div class="pull-right">
-                        <button type="button" class="btn btn-danger" id="patient_form_cancel">Regresar</button>
-                        <button type="submit" class="btn btn-success" id="patient_form_save">Registrarse</button>
+                        <div class="actions">
+                          <%= form.submit 'Registrar doctor', class: 'btn btn-success' %>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -169,17 +145,4 @@
       </div>
       <!-- /#page-content-wrapper -->
       </div>
-      <!-- /#wrapper -->
-      <!-- JAVASCRIPT -->
-      <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-      <script type="text/javascript" src="./../../js/register-doctor.js"></script>
-    </body>
-
-
-  </html>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
