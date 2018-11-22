@@ -3,8 +3,7 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="container-fluid">
-      <%= link_to 'Editar', edit_patient_path(@patient) %> |
-      <%= link_to 'Atrás', patients_path %>
+      <%= link_to 'Editar', edit_patient_path(@patient) %>
       <div class="row container">
         <div class="col-md-12">
           <h1>Paciente <%= "#{@patient.first_name} #{@patient.last_name_father}" %></h1>
@@ -22,7 +21,7 @@
             </div>
           </div>
         </div>
-
+      <% if current_user.doctor %>
       <div class="row container">
         <div class="col-md-12">
           <h1>Antecedentes familiares</h1>
@@ -83,6 +82,7 @@
             </div>
           </div>
         </div>
+        <% end %>
     </div>
   </div>
 </div>
