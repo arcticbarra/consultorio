@@ -3,12 +3,24 @@
 
     <!-- navbar-top-left -->
     <ul class="nav navbar-nav navbar-top">
-      <li class="active" id="fat-menu">
         <% if current_user.doctor %>
-        <%= link_to patients_path do %>
-          <i class='fa fa-user-injured'></i><span>Pacientes</span>
-        <% end %>
+          <li class="active" id="fat-menu">
+            <%= link_to patients_path do %>
+              <i class='fa fa-user-injured'></i><span>Pacientes</span>
+            <% end %>
+          </li>
+          <li class="" id="fat-menu">
+            <%= link_to evolution_notes_path do %>
+              <i class='fa fa-file-prescription'></i><span>Notas de evolución</span>
+            <% end %>
+          </li>
       <% else  %>
+      <li class="active" id="fat-menu">
+        <%= link_to patient_path(current_user.patient) do %>
+          <i class='fa fa-user'></i><span>Perfil</span>
+        <% end %>
+      </li>
+      <li id="fat-menu">
         <%= link_to patient_evolution_notes_path(current_user) do %>
           <i class='fa fa-file-prescription'></i><span>Recetas</span>
         <% end %>
@@ -27,9 +39,6 @@
       <li id="fat-menu" class="dropdown"> <a class="dropdown-toggle center" id="drop3" data-toggle="dropdown"
                                                                                        role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i></a>
         <ul class="dropdown-menu" aria-labelledby="drop3">
-          <% if current_user.patient %>
-            <li><%= link_to "Perfil", edit_patient_path(current_user.patient), class: "fa fa-user-injured"%></li>
-      <% end %>
           <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
         </ul>
       </li>

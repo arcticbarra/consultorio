@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   end
   root to: 'pages#index'
   resources :doctors
+  resources :evolution_notes
 end

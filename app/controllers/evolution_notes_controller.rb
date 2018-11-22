@@ -4,7 +4,11 @@ class EvolutionNotesController < ApplicationController
   # GET /evolution_notes
   # GET /evolution_notes.json
   def index
-    @evolution_notes = EvolutionNote.where(patient_id: params[:patient_id])
+    if current_user.doctor
+      @evolution_notes = EvolutionNote.all
+    else
+      @evolution_notes = EvolutionNote.where(patient_id: params[:patient_id])
+    end
   end
 
   # GET /evolution_notes/1
@@ -27,7 +31,7 @@ class EvolutionNotesController < ApplicationController
   def create
     @evolution_note = EvolutionNote.new(evolution_note_params)
     @evolution_note.doctor_id = current_user.doctor.id
-    @evolution_note.patient_id =params[:patient_id] 
+    @evolution_note.patient_id =params[:patient_id]
 
     respond_to do |format|
       if @evolution_note.save
