@@ -14,7 +14,7 @@
               <!-- Form -->
               <div class="container">
                 <fieldset>
-                  <%= form_for(@user, html: {class: 'well form-horizontal'}, as: :user, url: registration_path(:user)) do |f| %>
+                  <%= form_for(:user, html: {class: 'well form-horizontal'}, as: :user, url: patients_path) do |f| %>
 
                     <%= render partial: "new_form", locals: { f: f, patient: @user.build_patient} %> 
                     <div class="form-group">

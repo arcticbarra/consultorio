@@ -4,11 +4,13 @@ class Patient < ApplicationRecord
   has_many :diseases, through: :patient_diseases
   has_many :evolution_notes
   has_many :appointments
-  belongs_to :checkup, optional: true
+  has_one :checkup
   enum gender: %i[Masculino Femenino]
   enum civil_status: ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo']
   enum occupation: ['Estudiante', 'Empleado', 'Comerciante', 'Jubilado', 'Ama de casa']
   enum heard_about_us: ['Facebook', 'Doctoralia', 'Sitio Web', 'Recomendación', 'Otro']
+
+  accepts_nested_attributes_for :checkup
 
   def family_antecedents
     patient_diseases.where(family: true).map(&:disease)

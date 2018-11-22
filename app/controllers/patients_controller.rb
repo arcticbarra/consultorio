@@ -26,8 +26,10 @@ class PatientsController < ApplicationController
   # POST /patients
   # POST /patients.json
   def create
-    @patient = Patient.new(patient_params)
-
+    user = User.create(user_params)
+    user.patient.user_id = user.id
+    @patient = user.patient
+    #user.patient.update(user_params["patient_attributes"])
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
@@ -43,7 +45,6 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1.json
   def update
     respond_to do |format|
-      puts(patient_params)
       if @patient.update(patient_params)
         format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient }
@@ -76,7 +77,15 @@ class PatientsController < ApplicationController
     params.require(:patient).permit(
       :id, :first_name, :last_name_father, :last_name_mother,
       :gender, :birth_date, :civil_status, :occupation, :street,
-      :colony, :zip_code, :city, :state, :rfc
+      :colony, :zip_code, :city, :state, :rfc, checkup_attributes: [:family_diabetes,:id, :results, :family_cancer, :family_hipertension, :personal_diabetes, :personal_cancer, :personal_hipertension, :allergies, :surgeries, :results]
+    )
+  end
+
+  def user_params
+    params.require(:user).permit(
+      :email, :password, patient_attributes: [:id, :phone, :first_name, :last_name_father, :last_name_mother,
+      :gender, :birth_date, :civil_status, :occupation, :street,
+      :colony, :zip_code, :city, :state, :rfc, checkup_attributes: [:family_diabetes,:id, :results, :family_cancer, :family_hipertension, :personal_diabetes, :personal_cancer, :personal_hipertension, :allergies, :surgeries, :results]]
     )
   end
 end
