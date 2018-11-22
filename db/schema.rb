@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181121232701) do
+ActiveRecord::Schema.define(version: 20181122000224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20181121232701) do
     t.boolean "personal_cancer"
     t.boolean "personal_diabetes"
     t.boolean "personal_hipertension"
+    t.bigint "patient_id"
+    t.index ["patient_id"], name: "index_checkups_on_patient_id"
   end
 
   create_table "diseases", force: :cascade do |t|
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 20181121232701) do
 
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
+  add_foreign_key "checkups", "patients"
   add_foreign_key "doctors", "users"
   add_foreign_key "evolution_notes", "doctors"
   add_foreign_key "evolution_notes", "patients"
